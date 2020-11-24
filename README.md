@@ -21,6 +21,7 @@ const syllablize = require("syllablize");
 
 let word = "supercalifragilisticexpialidocious";
 console.log(syllablize(word));
+
 /*
 Expected output:
 [
