@@ -1,6 +1,6 @@
 {
   "name": "syllablize",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Break a word into syllables",
   "main": "./lib/index.js",
   "types": "./typings/index.d.ts",
