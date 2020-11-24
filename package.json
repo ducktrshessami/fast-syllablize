@@ -1,0 +1,19 @@
+{
+  "name": "syllablize",
+  "version": "1.0.0",
+  "description": "Break a word into syllables",
+  "main": "./lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ducktrshessami/syllablize.git"
+  },
+  "author": "ducktrshessami",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/ducktrshessami/syllablize/issues"
+  },
+  "homepage": "https://github.com/ducktrshessami/syllablize#readme"
+}
