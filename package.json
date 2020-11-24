@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Break a word into syllables",
   "main": "./lib/index.js",
+  "types": "./typings/index.d.ts",
   "directories": {
     "lib": "lib"
   },
