@@ -2,9 +2,11 @@
 
 Break a word into syllables in Node.js
 
-Based on [code from Stack Overflow](https://stackoverflow.com/a/51175267/14184670)
-
 Mainly for personal use
+
+Based on code from Stack Overflow:
+- https://stackoverflow.com/a/51175267
+- https://stackoverflow.com/a/49407494
 
 # Installation
 
@@ -25,11 +27,11 @@ console.log(syllablize(word));
 /*
 Expected output:
 [
-  'su',   'pe',  'rca',
-  'li',   'fra', 'gi',
-  'li',   'sti', 'ce',
-  'xpia', 'li',  'do',
-  'cio',  'us'
+  'su',    'per', 'ca',
+  'lif',   'ra',  'gi',
+  'lis',   'ti',  'cex',
+  'pia',   'li',  'do',
+  'cious'
 ]
 */
 ```
