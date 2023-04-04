@@ -3,6 +3,8 @@
   "version": "2.0.0",
   "description": "Break a word into syllables",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "repository": "git@github.com:ducktrshessami/fast-syllablize.git",
   "author": "ducktrshessami",
   "license": "MIT",
