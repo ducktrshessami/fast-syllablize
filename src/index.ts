@@ -1,6 +1,6 @@
 export default function syllablize(word: string) {
-    let formatted = word.trim()
-        .toLocaleLowerCase("en")
+    const formatted = word
+        .trim()
         .replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, "");
     return formatted[formatted.length - 1] === "e" || !/[aeiouy]/i.test(formatted) ? foo(formatted) : bar(formatted);
 }
@@ -8,7 +8,7 @@ export default function syllablize(word: string) {
 // Based on https://stackoverflow.com/a/51175267
 function foo(word: string) {
     const results = [];
-    let split = splitWord(word).reverse();
+    const split = splitWord(word).reverse();
     while (word && split.length) {
         let index = word.indexOf(split[split.length - 1]) + split[split.length - 1].length;
         results.push(word.slice(0, index))
@@ -22,9 +22,9 @@ function foo(word: string) {
 }
 
 function splitWord(original: string) {
-    let syl = original.replace(/(?:[^laeiouy]|ed|[^laeiouy]e)$/, '')
-        .replace(/^y/, '')
-        .match(/[aeiouy]{1,2}/g);
+    const syl = original.replace(/(?:[^laeiouy]|ed|[^laeiouy]e)$/i, "")
+        .replace(/^y/i, "")
+        .match(/[aeiouy]{1,2}/gi);
     return syl ? syl : [original];
 }
 
