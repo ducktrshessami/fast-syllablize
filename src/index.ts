@@ -1,12 +1,12 @@
-export default function syllablize(word: string) {
+export function syllablize(word: string) {
     const formatted = word
         .trim()
         .replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, "");
-    return formatted[formatted.length - 1] === "e" || !/[aeiouy]/i.test(formatted) ? foo(formatted) : bar(formatted);
+    return formatted[formatted.length - 1] === "e" || !/[aeiouy]/i.test(formatted) ? methodA(formatted) : methodB(formatted);
 }
 
 // Based on https://stackoverflow.com/a/51175267
-function foo(word: string) {
+export function methodA(word: string) {
     const results = [];
     const split = splitWord(word).reverse();
     while (word && split.length) {
@@ -29,6 +29,6 @@ function splitWord(original: string) {
 }
 
 // Based on https://stackoverflow.com/a/49407494
-function bar(word: string) {
+export function methodB(word: string) {
     return word.match(/[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi) || (word ? [word] : []);
 }
