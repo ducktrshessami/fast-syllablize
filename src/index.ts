@@ -1,4 +1,4 @@
-export function syllablize(word: string) {
+export function syllablize(word: string): Array<string> {
     const formatted = word
         .trim()
         .replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, "");
@@ -6,7 +6,7 @@ export function syllablize(word: string) {
 }
 
 // Based on https://stackoverflow.com/a/51175267
-export function methodA(word: string) {
+export function methodA(word: string): Array<string> {
     const results = [];
     const split = splitWord(word).reverse();
     while (word && split.length) {
@@ -21,7 +21,7 @@ export function methodA(word: string) {
     return results;
 }
 
-function splitWord(original: string) {
+function splitWord(original: string): Array<string> {
     const syl = original.replace(/(?:[^laeiouy]|ed|[^laeiouy]e)$/i, "")
         .replace(/^y/i, "")
         .match(/[aeiouy]{1,2}/gi);
@@ -29,6 +29,6 @@ function splitWord(original: string) {
 }
 
 // Based on https://stackoverflow.com/a/49407494
-export function methodB(word: string) {
+export function methodB(word: string): Array<string> {
     return word.match(/[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi) || (word ? [word] : []);
 }
