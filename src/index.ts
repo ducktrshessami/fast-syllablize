@@ -1,12 +1,21 @@
+function formatWord(word: string): string {
+    return word.replace(/[^a-z]/gi, "");
+}
+
 export function syllablize(word: string): Array<string> {
-    const formatted = word
-        .trim()
-        .replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, "");
-    return formatted[formatted.length - 1] === "e" || !/[aeiouy]/i.test(formatted) ? methodA(formatted) : methodB(formatted);
+    const formatted = formatWord(word);
+    return formatted[formatted.length - 1] === "e" || !/[aeiouy]/i.test(formatted) ? A(formatted) : B(formatted);
+}
+
+function splitWord(original: string): Array<string> {
+    const syl = original.replace(/(?:[^laeiouy]|ed|[^laeiouy]e)$/i, "")
+        .replace(/^y/i, "")
+        .match(/[aeiouy]{1,2}/gi);
+    return syl ? syl : [original];
 }
 
 // Based on https://stackoverflow.com/a/51175267
-export function methodA(word: string): Array<string> {
+function A(word: string): Array<string> {
     const results = [];
     const split = splitWord(word).reverse();
     while (word && split.length) {
@@ -21,19 +30,24 @@ export function methodA(word: string): Array<string> {
     return results;
 }
 
-function splitWord(original: string): Array<string> {
-    const syl = original.replace(/(?:[^laeiouy]|ed|[^laeiouy]e)$/i, "")
-        .replace(/^y/i, "")
-        .match(/[aeiouy]{1,2}/gi);
-    return syl ? syl : [original];
+export function methodA(word: string): Array<string> {
+    return A(formatWord(word));
 }
 
 // Based on https://stackoverflow.com/a/49407494
-export function methodB(word: string): Array<string> {
+function B(word: string): Array<string> {
     return word.match(/[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi) || (word ? [word] : []);
 }
 
-export function methodC(word: string): Array<string> {
+export function methodB(word: string): Array<string> {
+    return B(formatWord(word));
+}
+
+function C(word: string): Array<string> {
     const res = word.match(/(?:(?<![aeiouy])[bcdfghjklmnpqrstvwxyz]{2,}|[bcdfghjklmnpqrstvwxyz])?(?:[aeiouy]{2,}(?![bcdfghjklmnpqrstvwxyz][aeiouy])|[ei]{2}|o[ou]|[aeiouy])?(?:[bcdfghjklmnpqrstvwxyz](?![aeiouy]))*/gi) || [];
     return res.filter(syl => syl);
+}
+
+export function methodC(word: string): Array<string> {
+    return C(formatWord(word));
 }
