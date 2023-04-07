@@ -32,3 +32,8 @@ function splitWord(original: string): Array<string> {
 export function methodB(word: string): Array<string> {
     return word.match(/[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi) || (word ? [word] : []);
 }
+
+export function methodC(word: string): Array<string> {
+    const res = word.match(/(?:(?<![aeiouy])[bcdfghjklmnpqrstvwxyz]{2,}|[bcdfghjklmnpqrstvwxyz])?(?:[aeiouy]{2,}(?![bcdfghjklmnpqrstvwxyz][aeiouy])|[ei]{2}|o[ou]|[aeiouy])?(?:[bcdfghjklmnpqrstvwxyz](?![aeiouy]))*/gi) || [];
+    return res.filter(syl => syl);
+}
