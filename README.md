@@ -14,11 +14,11 @@ console.log(syllablize(word));
 /*
 Expected output:
 [
-  'su',    'per', 'ca',
-  'lif',   'ra',  'gi',
-  'lis',   'ti',  'cex',
-  'pia',   'li',  'do',
-  'cious'
+  'su',  'per',   'ca',
+  'lif', 'ra',    'gi',
+  'lis', 'ti',    'cex',
+  'pi',  'a',     'li',
+  'do',  'cious'
 ]
 */
 ```
