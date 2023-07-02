@@ -5,8 +5,7 @@ Break a word into syllables
 # Usage
 
 ```js
-// const { syllablize } = require("syllablize");
-import { syllablize } from "fast-syllablize";
+const { syllablize } = require("fast-syllablize");
 
 let word = "supercalifragilisticexpialidocious";
 console.log(syllablize(word));
