@@ -7,27 +7,10 @@ export function syllablize(word: string): Array<string> {
     return formatted[formatted.length - 1] === "e" || !/[aeiouy]/i.test(formatted) ? A(formatted) : B(formatted);
 }
 
-function splitWord(original: string): Array<string> {
-    const syl = original.replace(/(?:[^laeiouy]|ed|[^laeiouy]e)$/i, "")
-        .replace(/^y/i, "")
-        .match(/[aeiouy]{1,2}/gi);
-    return syl ? syl : [original];
-}
-
 // Based on https://stackoverflow.com/a/51175267
 function A(word: string): Array<string> {
-    const results = [];
-    const split = splitWord(word).reverse();
-    while (word && split.length) {
-        let index = word.indexOf(split[split.length - 1]) + split[split.length - 1].length;
-        results.push(word.slice(0, index))
-        word = word.slice(index);
-        split.pop();
-    }
-    if (word) {
-        results[results.length - 1] += word;
-    }
-    return results;
+    const res = word.match(/(?:[^aeiouy]+|y^)?[aeiouy]{1,2}(?:(?:(?:[^aeiouy]*(?:[^laeiouy]e?|ed))|[^aeiouy]+)$)?/gi) || [];
+    return res.filter(syl => syl);
 }
 
 export function methodA(word: string): Array<string> {
