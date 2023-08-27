@@ -7,10 +7,13 @@ export function syllablize(word: string): Array<string> {
     return formatted[formatted.length - 1] === "e" || !/[aeiouy]/i.test(formatted) ? A(formatted) : B(formatted);
 }
 
+function matchSyllables(word: string, pattern: RegExp): Array<string> {
+    return word.match(pattern) || (word ? [word] : []);
+}
+
 // Based on https://stackoverflow.com/a/51175267
 function A(word: string): Array<string> {
-    const res = word.match(/(?:[^aeiouy]+|y^)?[aeiouy]{1,2}(?:(?:(?:[^aeiouy]*(?:[^laeiouy]e?|ed))|[^aeiouy]+)$)?/gi) || [];
-    return res.filter(syl => syl);
+    return matchSyllables(word, /(?:[^aeiouy]+|y^)?[aeiouy]{1,2}(?:(?:(?:[^aeiouy]*(?:[^laeiouy]e?|ed))|[^aeiouy]+)$)?/gi);
 }
 
 export function methodA(word: string): Array<string> {
@@ -18,8 +21,7 @@ export function methodA(word: string): Array<string> {
 }
 
 function B(word: string): Array<string> {
-    const res = word.match(/(?:(?<![aeiouy])[bcdfghjklmnpqrstvwxyz]{2,}|[bcdfghjklmnpqrstvwxyz])?(?:[aeiouy]{2,}(?![bcdfghjklmnpqrstvwxyz][aeiouy])|a[iu]|e[aeiu]|ie|o[aou]|[aeiouy])?(?:[bcdfghjklmnpqrstvwxyz](?![aeiouy]))*/gi) || [];
-    return res.filter(syl => syl);
+    return matchSyllables(word, /(?:(?<![aeiouy])[bcdfghjklmnpqrstvwxyz]{2,}|[bcdfghjklmnpqrstvwxyz])?(?:[aeiouy]{2,}(?![bcdfghjklmnpqrstvwxyz][aeiouy])|a[iu]|e[aeiu]|ie|o[aou]|[aeiouy])?(?:[bcdfghjklmnpqrstvwxyz](?![aeiouy]))*/gi);
 }
 
 export function methodB(word: string): Array<string> {
@@ -28,7 +30,7 @@ export function methodB(word: string): Array<string> {
 
 // Based on https://stackoverflow.com/a/49407494
 function C(word: string): Array<string> {
-    return word.match(/[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi) || (word ? [word] : []);
+    return matchSyllables(word, /[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi);
 }
 
 export function methodC(word: string): Array<string> {
